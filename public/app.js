@@ -107,6 +107,7 @@ dbx.addEventListener('click', function (e) {
 
 /* ---------- launch form ---------- */
 var side = 'long', tpx = 2, sym = 'BTC', imgData = null, busy = false;
+var HASFORM = !!$('go');
 var nm = $('nm'), tk = $('tk'), ok = $('ok'), go = $('go'), found = $('found'), buy = $('db2');
 function pressed(sel, fn) { document.querySelectorAll(sel).forEach(function (b) { b.setAttribute('aria-pressed', fn(b)); }); }
 function buyVal() { var n = Number(String(buy.value).replace(',', '.')); return isFinite(n) && n >= 0 && n <= 5 ? n : null; }
@@ -143,6 +144,7 @@ function loadMarkets() {
     MARKETS = (d.markets || []).filter(function (m) { return m && m.id; });
     MARKETS.forEach(function (m) { LEV[m.id] = m.maxLeverage; LABEL[m.id] = m.label; if (m.price) PRICE[m.id] = fmtPrice(m.id, m.price); });
     refresh();
+    if (HP.afterMarkets) HP.afterMarkets(MARKETS);
   }).catch(function () { if (mk && !MARKETS.length) mk.innerHTML = '<p class="mkhint">Could not load markets. Reload to try again.</p>'; });
 }
 if (mk) {
@@ -172,16 +174,17 @@ function refresh() {
   if (okTiers.length && okTiers.indexOf(tpx) < 0) { tpx = okTiers.filter(function (x) { return x < tpx; }).pop() || okTiers[0]; pressed('[data-x]', function (b) { return Number(b.dataset.x) === tpx; }); }
   var mv = ((tpx - 1) / L * 100).toFixed(1), bust = (100 / L).toFixed(1);
   if ($('tpnote')) $('tpnote').innerHTML = TIER[tpx] + ': closes and burns when the position is worth <b>' + tpx + 'x</b> its margin, a move of about <b>' + mv + '%</b> your way. It busts at about <b>' + bust + '%</b> against you. Roughly <b>1 in ' + tpx + '</b> positions get there first, before fees, funding and slippage.';
+  if (!HASFORM) return;
   var t = tk.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '') || 'TICKER', n = nm.value.trim() || 'Coin name';
   if ($('sum')) $('sum').innerHTML = '<span class="t">$' + esc(t) + '</span> · ' + esc(n) + '<br>' + side + ' ' + esc(mlabel(sym)) + ' at ' + L + 'x · ' + TIER[tpx] + ' ' + tpx + 'x<br><span class="d">$' + THR + ' of fees opens a $' + (THR * L).toLocaleString('en-US') + ' position · profit: 80% burns your coin, 20% goes to the HYPERPUMP buyback</span>';
   go.disabled = busy || !(ok.checked && nm.value.trim() && tk.value.trim() && imgData && buyVal() !== null);
   go.textContent = !cfgLoaded ? 'Loading…' : !treasury ? 'Launching is paused' : acct ? 'Launch coin' : 'Connect wallet to launch';
   if (cfgLoaded && !treasury) go.disabled = true;
 }
-$('sl').onclick = function () { side = 'long'; refresh(); }; $('ss').onclick = function () { side = 'short'; refresh(); };
-document.querySelectorAll('[data-x]').forEach(function (b) { b.onclick = function () { tpx = Number(b.dataset.x); refresh(); }; });
-[nm, tk, ok, buy].forEach(function (e) { e.addEventListener('input', refresh); e.addEventListener('change', refresh); });
-$('img').addEventListener('change', function (e) {
+if (HASFORM) { $('sl').onclick = function () { side = 'long'; refresh(); }; $('ss').onclick = function () { side = 'short'; refresh(); }; }
+if (HASFORM) document.querySelectorAll('[data-x]').forEach(function (b) { b.onclick = function () { tpx = Number(b.dataset.x); refresh(); }; });
+if (HASFORM) [nm, tk, ok, buy].forEach(function (e) { e.addEventListener('input', refresh); e.addEventListener('change', refresh); });
+if (HASFORM) $('img').addEventListener('change', function (e) {
   var f = e.target.files && e.target.files[0]; imgData = null; $('thumb').style.backgroundImage = '';
   if (!f) { refresh(); return; }
   if (f.size > 1000000) { found.innerHTML = '<span class="err">Image must be under 1 MB.</span>'; e.target.value = ''; refresh(); return; }
@@ -283,7 +286,7 @@ async function launch() {
     say('<span class="err">' + esc(err && err.message || 'Launch failed.') + '</span>');
   } finally { busy = false; refresh(); }
 }
-go.onclick = launch;
+if (HASFORM) go.onclick = launch;
 
 /* ---------- explore ---------- */
 HP.coinHref = HP.coinHref || function (mint) { return '/coin/' + mint; };

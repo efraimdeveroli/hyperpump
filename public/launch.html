@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Launch a coin · HYPERPUMP</title>
+<meta name="description" content="Launch a coin on pump.fun. Its creator fees go long or short on any Hyperliquid perp. Pick a market, a side and a take-profit tier.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HYPERPUMP">
+<meta property="og:title" content="Launch a coin on HYPERPUMP">
+<meta property="og:description" content="Pick any Hyperliquid perp and a side. Every coin's creator fees become its position.">
+<meta property="og:url" content="__ORIGIN__/launch">
+<meta property="og:image" content="__ORIGIN__/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HyperPumpSol">
+<meta name="twitter:title" content="Launch a coin on HYPERPUMP">
+<meta name="twitter:description" content="Pick any Hyperliquid perp and a side. Every coin's creator fees become its position.">
+<meta name="twitter:image" content="__ORIGIN__/og.png">
+<meta name="theme-color" content="#081114">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/">
+      <svg viewBox="40 40 432 432" aria-hidden="true"><defs><clipPath id="hpc"><rect x="156" y="56" width="200" height="400" rx="100"/></clipPath><linearGradient id="hpl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#97FCE4"/><stop offset="1" stop-color="#50D2C1"/></linearGradient></defs><g transform="translate(512 0) scale(-1 1)"><g transform="rotate(-30 256 256)"><rect x="156" y="56" width="200" height="400" rx="100" fill="#0E1F22"/>
+<g clip-path="url(#hpc)"><path d="M120 236 C170 196 210 196 256 236 S342 276 392 236 V480 H120 Z" fill="url(#hpl)"/>
+<path d="M120 236 C170 196 210 196 256 236 S342 276 392 236" fill="none" stroke="#E6FFF8" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+<circle cx="214" cy="330" r="14" fill="#081114" opacity=".35"/><circle cx="288" cy="372" r="9" fill="#081114" opacity=".35"/><circle cx="262" cy="300" r="6" fill="#081114" opacity=".35"/></g>
+<rect x="156" y="56" width="200" height="400" rx="100" fill="none" stroke="#54F58E" stroke-width="16"/></g></g></svg>
+      HYPERPUMP
+    </a>
+    <span class="pw">Perps on Hyperliquid</span>
+    <div class="sp"></div>
+    <div class="links"><a href="/#board">Coins</a><a href="/launch" aria-current="page">Launch</a><a href="/#how">How it works</a><a href="/docs">Docs</a><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener" aria-label="HYPERPUMP on X"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.2 2.2h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.2H8l4.7 6.2 5.5-6.2Zm-1.2 17.5h1.8L7.1 4H5.2l11.8 15.7Z"/></svg></a></div>
+    <button class="btn main js-wallet" type="button">Connect wallet</button>
+  </nav>
+  <div class="lp">
+    <div class="lp-form">
+    <div class="make" id="make">
+      <h2>Make your coin</h2>
+      <p class="sub">The bet you pick here is locked for the life of the coin.</p>
+      <form onsubmit="return false" autocomplete="off">
+        <div class="two">
+          <div class="f" style="margin-top:0"><label class="lbl" for="nm">Name</label><input class="inp" id="nm" maxlength="32" placeholder="Hopium"></div>
+          <div class="f" style="margin-top:0"><label class="lbl" for="tk">Ticker</label><input class="inp" id="tk" maxlength="8" spellcheck="false" placeholder="HOPIUM"></div>
+        </div>
+        <div class="f"><label class="lbl" for="img">Picture</label><div class="imgrow"><div class="thumb" id="thumb"></div><input type="file" id="img" accept="image/*"></div></div>
+        <div class="f"><label class="lbl" for="ds">One line about it (optional)</label><textarea class="inp" id="ds" rows="2" maxlength="140" placeholder="Keep it short."></textarea></div>
+        <div class="f"><span class="lbl">Which way?</span><div class="sides" role="group" aria-label="Position side"><button type="button" id="sl" aria-pressed="true">Long ↑</button><button type="button" id="ss" aria-pressed="false">Short ↓</button></div></div>
+        <div class="f"><span class="lbl">Which market?</span>
+          <input class="inp" id="mksearch" type="search" placeholder="Search all Hyperliquid perps: TSLA, DOGE, PEPE…" autocomplete="off" spellcheck="false" aria-label="Search markets" aria-controls="mk" style="margin-bottom:8px">
+          <div class="mk" id="mk" role="group" aria-label="Market"></div>
+          <p class="mkhint" id="mkhint" aria-live="polite"></p></div>
+        <div class="f"><span class="lbl">When does it take profit and burn?</span>
+          <div class="tp" role="group" aria-label="Take profit and burn">
+            <button type="button" data-x="2" aria-pressed="true"><b>Chill</b><span>2x</span></button>
+            <button type="button" data-x="5" aria-pressed="false"><b>Degen</b><span>5x</span></button>
+            <button type="button" data-x="10" aria-pressed="false"><b>Hyper-Degen</b><span>10x</span></button>
+          </div>
+          <p class="note" id="tpnote"></p></div>
+        <div class="f"><label class="lbl" for="db2">Your first buy in SOL (optional, needs a second approval)</label><input class="inp num" id="db2" inputmode="decimal" value="0.01"></div>
+        <div class="sum" id="sum" aria-live="polite"></div>
+        <p class="note" id="tnote">Creator fees from this coin go to the HYPERPUMP treasury. That is set on-chain in the same transaction as your launch and cannot be changed afterward.</p>
+        <label class="chk"><input type="checkbox" id="ok"><span>I understand that positions are not live yet, that Hyperliquid perps are leveraged and can liquidate fast, and that profits can fail to pay out.</span></label>
+        <button class="btn main" type="button" id="go" disabled>Launch coin</button>
+        <div class="found" id="found" aria-live="polite"></div>
+      </form>
+    </div>
+    </div>
+    <aside class="lp-side">
+      <h2>Before you launch</h2>
+      <ul>
+        <li><b>Fees are locked.</b> All of this coin's creator fees go to the HYPERPUMP treasury, set on-chain in the same transaction as your launch.</li>
+        <li><b>The bet is permanent.</b> Market, side and tier cannot be changed after launch.</li>
+        <li><b>You need a little SOL.</b> About 0.05 SOL covers the pump.fun launch and network fees, plus any first buy you choose.</li>
+        <li><b>Picture under 1 MB.</b> Square images look best.</li>
+        <li><b>Positions are not live yet.</b> Fees stack, but the Hyperliquid bot is still being built.</li>
+      </ul>
+      <p class="d">Questions? Read the <a href="/docs" class="in">docs</a>.</p>
+    </aside>
+  </div>
+  <footer><span>HYPERPUMP · launches on pump.fun, trades on Hyperliquid</span><span><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener">@HyperPumpSol</a> · Not financial advice.</span></footer>
+</div>
+
+<div class="ov" id="ov" hidden>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dt">
+    <div class="dh"><span id="dt">Connect wallet</span><button class="x" id="dx" type="button" aria-label="Close">×</button></div>
+    <div class="db" id="db"></div>
+  </div>
+</div>
+
+<script>
+window.HP = window.HP || {};
+HP.exploreHref = '/#board';
+</script>
+<script src="/app.js"></script>
+</body>
+</html>

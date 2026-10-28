@@ -39,7 +39,7 @@
     </a>
     <span class="pw">Perps on Hyperliquid</span>
     <div class="sp"></div>
-    <div class="links"><a href="#board">Coins</a><a href="#make">Launch</a><a href="#how">How it works</a><a href="/docs">Docs</a><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener" aria-label="HYPERPUMP on X"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.2 2.2h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.2H8l4.7 6.2 5.5-6.2Zm-1.2 17.5h1.8L7.1 4H5.2l11.8 15.7Z"/></svg></a></div>
+    <div class="links"><a href="#board">Coins</a><a href="/launch">Launch</a><a href="#how">How it works</a><a href="/docs">Docs</a><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener" aria-label="HYPERPUMP on X"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.2 2.2h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.2H8l4.7 6.2 5.5-6.2Zm-1.2 17.5h1.8L7.1 4H5.2l11.8 15.7Z"/></svg></a></div>
     <button class="btn main js-wallet" type="button">Connect wallet</button>
   </nav>
 
@@ -49,44 +49,26 @@
     <div>
       <h1>Launch a coin. <span>Its fees go long or short.</span></h1>
       <p class="lead">Pick any Hyperliquid perp, from BTC to stocks, and a side. Trading fees from your coin stack up to <b>$<span data-thr>50</span></b>, then open a leveraged Hyperliquid position. Win and the profit buys your coin back and burns it.</p>
+      <div class="cta"><a class="btn main" href="/launch">Launch a coin</a><a class="btn" href="#board">See the coins</a></div>
       <div class="facts">
         <div class="fact"><b class="num" data-stat="coins">–</b><span>coins launched</span></div>
         <div class="fact"><b class="num g" data-stat="fees">–</b><span>fees stacked</span></div>
         <div class="fact"><b class="num" data-stat="ready">–</b><span>ready to open</span></div>
       </div>
-      <div class="king" id="king" hidden></div>
+      <div class="mt" id="mt" hidden>
+        <h3>Pair your coin with anything on Hyperliquid</h3>
+        <div class="mt-grid" id="mt-grid"></div>
+        <p class="d" id="mt-note"></p>
+      </div>
     </div>
 
-    <div class="make" id="make">
-      <h2>Make your coin</h2>
-      <p class="sub">The bet you pick here is locked for the life of the coin.</p>
-      <form onsubmit="return false" autocomplete="off">
-        <div class="two">
-          <div class="f" style="margin-top:0"><label class="lbl" for="nm">Name</label><input class="inp" id="nm" maxlength="32" placeholder="Hopium"></div>
-          <div class="f" style="margin-top:0"><label class="lbl" for="tk">Ticker</label><input class="inp" id="tk" maxlength="8" spellcheck="false" placeholder="HOPIUM"></div>
-        </div>
-        <div class="f"><label class="lbl" for="img">Picture</label><div class="imgrow"><div class="thumb" id="thumb"></div><input type="file" id="img" accept="image/*"></div></div>
-        <div class="f"><label class="lbl" for="ds">One line about it (optional)</label><textarea class="inp" id="ds" rows="2" maxlength="140" placeholder="Keep it short."></textarea></div>
-        <div class="f"><span class="lbl">Which way?</span><div class="sides" role="group" aria-label="Position side"><button type="button" id="sl" aria-pressed="true">Long ↑</button><button type="button" id="ss" aria-pressed="false">Short ↓</button></div></div>
-        <div class="f"><span class="lbl">Which market?</span>
-          <input class="inp" id="mksearch" type="search" placeholder="Search all Hyperliquid perps: TSLA, DOGE, PEPE…" autocomplete="off" spellcheck="false" aria-label="Search markets" aria-controls="mk" style="margin-bottom:8px">
-          <div class="mk" id="mk" role="group" aria-label="Market"></div>
-          <p class="mkhint" id="mkhint" aria-live="polite"></p></div>
-        <div class="f"><span class="lbl">When does it take profit and burn?</span>
-          <div class="tp" role="group" aria-label="Take profit and burn">
-            <button type="button" data-x="2" aria-pressed="true"><b>Chill</b><span>2x</span></button>
-            <button type="button" data-x="5" aria-pressed="false"><b>Degen</b><span>5x</span></button>
-            <button type="button" data-x="10" aria-pressed="false"><b>Hyper-Degen</b><span>10x</span></button>
-          </div>
-          <p class="note" id="tpnote"></p></div>
-        <div class="f"><label class="lbl" for="db2">Your first buy in SOL (optional, needs a second approval)</label><input class="inp num" id="db2" inputmode="decimal" value="0.01"></div>
-        <div class="sum" id="sum" aria-live="polite"></div>
-        <p class="note" id="tnote">Creator fees from this coin go to the HYPERPUMP treasury. That is set on-chain in the same transaction as your launch and cannot be changed afterward.</p>
-        <label class="chk"><input type="checkbox" id="ok"><span>I understand that positions are not live yet, that Hyperliquid perps are leveraged and can liquidate fast, and that profits can fail to pay out.</span></label>
-        <button class="btn main" type="button" id="go" disabled>Launch coin</button>
-        <div class="found" id="found" aria-live="polite"></div>
-      </form>
-    </div>
+    <aside class="live" aria-label="Live on HYPERPUMP">
+      <h2>Live now</h2>
+      <div class="king" id="king" hidden></div>
+      <h3>Latest launches</h3>
+      <div id="feed" class="lfeed"><p class="d">Loading…</p></div>
+      <a class="btn main wide" href="/launch">Launch a coin</a>
+    </aside>
   </header>
 
   <section class="sec" id="board">
@@ -100,7 +82,7 @@
       </div>
     </div>
     <div class="board" id="cards"><div class="emptyb">Loading…</div></div>
-    <div id="feed" hidden></div>
+    
   </section>
 
   <section class="sec" id="how">
@@ -133,6 +115,7 @@
 HP = window.HP = window.HP || {};
 HP.exploreHref = '#board';
 HP.limitCards = 24;
+HP.limitFeed = 6;
 var filt = 'all', all = [], lastD = null;
 function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360; return 150 + h % 55; }
 function avatar(c) {
@@ -175,6 +158,20 @@ document.querySelectorAll('.chip').forEach(function (b) {
     render();
   });
 });
+</script>
+<script>
+HP.afterMarkets = function (list) {
+  var u = HP.u, grid = document.getElementById('mt-grid'); if (!grid || !list.length) return;
+  var pick = [], seen = {};
+  ['BTC', 'ETH', 'SOL', 'HYPE'].forEach(function (k) { list.forEach(function (m) { if (m.id === k && !seen[k]) { seen[k] = 1; pick.push(m); } }); });
+  list.forEach(function (m) { if (pick.length < 8 && !seen[m.id]) { seen[m.id] = 1; pick.push(m); } });
+  grid.innerHTML = pick.map(function (m) {
+    return '<a class="mtile" href="/launch" title="Launch a coin on ' + u.esc(m.label) + '"><b>' + u.esc(m.label) + '</b><span>' + u.esc(HP.u.price(m.id) || '') + '</span><em>' + m.maxLeverage + 'x' + (m.dex ? ' ' + u.esc(m.dex) : '') + '</em></a>';
+  }).join('');
+  document.getElementById('mt').hidden = false;
+  var dexes = {}; list.forEach(function (m) { if (m.dex) dexes[m.dex] = 1; });
+  document.getElementById('mt-note').textContent = list.length + ' perps to choose from, including stocks and commodities. Prices and leverage come live from Hyperliquid.';
+};
 </script>
 <script src="/app.js"></script>
 </body>

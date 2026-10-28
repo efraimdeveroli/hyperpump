@@ -338,7 +338,7 @@ const server = http.createServer(async (req, res) => {
       return res.end(fs.readFileSync(f));
     }
     // static
-    let p = url.pathname === '/' ? '/index.html' : url.pathname.startsWith('/coin/') ? '/coin.html' : url.pathname === '/docs' ? '/docs.html' : url.pathname;
+    let p = url.pathname === '/' ? '/index.html' : url.pathname.startsWith('/coin/') ? '/coin.html' : url.pathname === '/docs' ? '/docs.html' : url.pathname === '/launch' ? '/launch.html' : url.pathname;
     const f = path.normalize(path.join(PUB, p));
     if (!f.startsWith(PUB) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) return send(res, 404, 'not found', 'text/plain');
     const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
