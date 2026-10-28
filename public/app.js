@@ -313,7 +313,7 @@ function loadCoins() {
       var k = e.dataset.stat; e.textContent = k === 'coins' ? coins.length : k === 'fees' ? fmtUsd(fees) : k === 'ready' ? ready : '';
     });
     var cards = $('cards'), feed = $('feed');
-    if (!coins.length) { if (cards) cards.innerHTML = HP.empty(); if (feed) feed.innerHTML = '<p class="d">Nothing yet.</p>'; return; }
+    if (!coins.length) { if (cards) cards.innerHTML = HP.empty(); if (feed) feed.innerHTML = '<p class="d">Nothing yet.</p>'; if (HP.afterCoins) HP.afterCoins(coins, d); return; }
     if (cards) cards.innerHTML = coins.slice(0, HP.limitCards).map(function (c) { return HP.card(c, d); }).join('');
     if (feed) feed.innerHTML = coins.slice(0, HP.limitFeed).map(function (c) { return HP.line(c, d); }).join('');
     if (HP.afterCoins) HP.afterCoins(coins, d);

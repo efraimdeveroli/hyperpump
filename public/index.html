@@ -62,12 +62,29 @@
       </div>
     </div>
 
-    <aside class="live" aria-label="Live on HYPERPUMP">
-      <h2>Live now</h2>
-      <div class="king" id="king" hidden></div>
-      <h3>Latest launches</h3>
-      <div id="feed" class="lfeed"><p class="d">Loading…</p></div>
-      <a class="btn main wide" href="/launch">Launch a coin</a>
+    <aside class="live" id="live" aria-label="Live on HYPERPUMP">
+      <div class="first" id="first" hidden>
+        <h2>Be the first to launch</h2>
+        <p class="d">No coins yet. The first one sets the pace for everyone after it.</p>
+        <div class="king ghost" aria-hidden="true">
+          <span class="crown">YOUR COIN HERE</span>
+          <div class="gav">?</div>
+          <div><h3>$YOURS</h3><p>long BTC at 40x · Degen 5x</p>
+          <div class="bar"><i style="width:0%"></i></div><div class="to"><span><b class="num">$0.00</b> of $50</span><span>0%</span></div></div>
+        </div>
+        <ol class="fsteps">
+          <li><b>Pick a market and a side.</b> Any Hyperliquid perp, from BTC to stocks, long or short.</li>
+          <li><b>Fees stack to $50.</b> Every trade of your coin adds to its pot.</li>
+          <li><b>Win and it burns.</b> 80% of the profit buys your coin back and burns it.</li>
+        </ol>
+      </div>
+      <div class="some" id="some" hidden>
+        <h2>Live now</h2>
+        <div class="king" id="king" hidden></div>
+        <h3>Latest launches</h3>
+        <div id="feed" class="lfeed"><p class="d">Loading…</p></div>
+      </div>
+      <a class="btn main wide" href="/launch" id="livecta">Launch a coin</a>
     </aside>
   </header>
 
@@ -140,6 +157,7 @@ function render() {
 }
 HP.afterCoins = function (coins, d) {
   all = coins; lastD = d;
+  var none = !coins.length; document.getElementById('first').hidden = !none; document.getElementById('some').hidden = none; document.getElementById('livecta').textContent = none ? 'Launch the first coin' : 'Launch a coin';
   var u = HP.u, king = document.getElementById('king');
   var top = coins.filter(function (c) { return c.feeUsd != null; }).sort(function (a, b) { return b.feeUsd - a.feeUsd; })[0];
   if (top) {
