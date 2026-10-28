@@ -47,4 +47,4 @@ Not verified against mainnet: the SDK calls (@pump-fun/pump-sdk 4.1.0 via esm.sh
 ## Still to build
 - the Hyperliquid bot: watch each treasury balance, open the position with an agent wallet that can trade but not withdraw, tag orders with a builder code, close at take profit, run the buyback and burn
 - a funding path from SOL fees on Solana to USDC margin on Hyperliquid
-- legal review: leveraged trading is restricted in places, including the U.S. and Ontario
+- legal review: leveraged trading is restricted in some areas
