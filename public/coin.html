@@ -100,7 +100,7 @@
       '<dt>Busts at</dt><dd>' + bust.toFixed(1) + '% against</dd>' +
       '<dt>Odds</dt><dd>about 1 in ' + c.tier + '</dd>' +
       '<dt>If it wins</dt><dd>about ' + usd(profit) + ' profit</dd></dl>' +
-      '<p class="d" style="margin-top:14px;font-size:14px">A win burns 80% of the profit in this coin and sends 20% to the HYPERPUMP buyback. A bust and the coin starts stacking fees again. Odds ignore fees, funding and slippage.</p></section></div>';
+      '<p class="d" style="margin-top:14px;font-size:14px">A win buys back and burns this coin with 80% of the profit, and buys and burns HYPERPUMP with the other 20%. A bust and the coin starts stacking fees again. Odds ignore fees, funding and slippage.</p></section></div>';
   }).catch(function (e) { notFound(/not found/i.test(e.message) ? 'This coin is not listed on HYPERPUMP.' : 'Could not load this coin. Try again in a moment.'); });
 })();
 </script>

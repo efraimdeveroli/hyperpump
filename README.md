@@ -1,6 +1,6 @@
 # HYPERPUMP
 
-Launch coins on pump.fun with creator fees locked to a treasury. Each coin picks any Hyperliquid perp (BTC, ETH, SOL, HYPE, memecoins, stocks and every other listed market), a side and a take-profit tier. Once a coin's fees reach $50, they are meant to open a leveraged Hyperliquid position, and a win buys back and burns the coin.
+Launch coins on pump.fun with creator fees locked to a treasury. Each coin picks any Hyperliquid perp (BTC, ETH, SOL, HYPE, memecoins, stocks and every other listed market), a side and a take-profit tier. Once a coin's fees reach $50, they are meant to open a leveraged Hyperliquid position, and a win buys back and burns the coin (80% of profit) and HYPERPUMP (20%).
 
 Copied from YOLOPAD. **Positions are not built yet**: this server lists coins and tracks fee progress, nothing more. There is no Hyperliquid execution bot.
 
@@ -45,6 +45,6 @@ The server reads the coin's sharing_config account on-chain and only lists the c
 Not verified against mainnet: the SDK calls (@pump-fun/pump-sdk 4.1.0 via esm.sh), the one-transaction size, the optional initial buy via PumpPortal.
 
 ## Still to build
-- the Hyperliquid bot: watch each treasury balance, open the position with an agent wallet that can trade but not withdraw, tag orders with a builder code, close at take profit, run the buyback and burn
+- the Hyperliquid bot: watch each treasury balance, open the position with an agent wallet that can trade but not withdraw, tag orders with a builder code, close at take profit, run the buy and burn of the coin and HYPERPUMP
 - a funding path from SOL fees on Solana to USDC margin on Hyperliquid
 - legal review: leveraged trading is restricted in some areas

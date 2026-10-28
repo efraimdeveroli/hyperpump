@@ -176,7 +176,7 @@ function refresh() {
   if ($('tpnote')) $('tpnote').innerHTML = TIER[tpx] + ': closes and burns when the position is worth <b>' + tpx + 'x</b> its margin, a move of about <b>' + mv + '%</b> your way. It busts at about <b>' + bust + '%</b> against you. Roughly <b>1 in ' + tpx + '</b> positions get there first, before fees, funding and slippage.';
   if (!HASFORM) return;
   var t = tk.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '') || 'TICKER', n = nm.value.trim() || 'Coin name';
-  if ($('sum')) $('sum').innerHTML = '<span class="t">$' + esc(t) + '</span> · ' + esc(n) + '<br>' + side + ' ' + esc(mlabel(sym)) + ' at ' + L + 'x · ' + TIER[tpx] + ' ' + tpx + 'x<br><span class="d">$' + THR + ' of fees opens a $' + (THR * L).toLocaleString('en-US') + ' position · profit: 80% burns your coin, 20% goes to the HYPERPUMP buyback</span>';
+  if ($('sum')) $('sum').innerHTML = '<span class="t">$' + esc(t) + '</span> · ' + esc(n) + '<br>' + side + ' ' + esc(mlabel(sym)) + ' at ' + L + 'x · ' + TIER[tpx] + ' ' + tpx + 'x<br><span class="d">$' + THR + ' of fees opens a $' + (THR * L).toLocaleString('en-US') + ' position · profit: 80% buys and burns your coin, 20% buys and burns HYPERPUMP</span>';
   go.disabled = busy || !(ok.checked && nm.value.trim() && tk.value.trim() && imgData && buyVal() !== null);
   go.textContent = !cfgLoaded ? 'Loading…' : !treasury ? 'Launching is paused' : acct ? 'Launch coin' : 'Connect wallet to launch';
   if (cfgLoaded && !treasury) go.disabled = true;

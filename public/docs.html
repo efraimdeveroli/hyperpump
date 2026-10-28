@@ -72,7 +72,7 @@
 
       <h2 id="what">What it is</h2>
       <p>HYPERPUMP is a launchpad on Solana. Each coin you launch is a normal pump.fun coin, with one difference: all of its creator fees are locked to the HYPERPUMP treasury. Those fees are the coin's bankroll.</p>
-      <p>When a coin's fees reach <b>$50</b>, HYPERPUMP is meant to use them as margin to open a leveraged position on <a class="in" href="https://hyperliquid.xyz" target="_blank" rel="noopener">Hyperliquid</a>, in the market and on the side the coin's creator picked at launch. A winning position burns the coin and funds a HYPERPUMP buyback. A bust sends the coin back to stacking fees.</p>
+      <p>When a coin's fees reach <b>$50</b>, HYPERPUMP is meant to use them as margin to open a leveraged position on <a class="in" href="https://hyperliquid.xyz" target="_blank" rel="noopener">Hyperliquid</a>, in the market and on the side the coin's creator picked at launch. A winning position buys and burns the coin, and buys and burns HYPERPUMP. A bust sends the coin back to stacking fees.</p>
 
       <h2 id="flow">How a coin plays</h2>
       <ol>
@@ -107,7 +107,7 @@
 
       <h2 id="outcome">Win or bust</h2>
       <h3>Win</h3>
-      <p>The position takes profit at its tier. The profit is split: <b>80% buys back and burns the coin</b>, which removes supply, and <b>20% funds a buyback of HYPERPUMP</b>.</p>
+      <p>The position takes profit at its tier. The profit is split: <b>80% buys back and burns the coin</b>, which removes supply, and <b>20% buys back and burns HYPERPUMP</b>.</p>
       <h3>Bust</h3>
       <p>If the price moves against the position by 1 &divide; leverage, Hyperliquid liquidates it and the margin is lost. The coin is not burned and starts stacking fees again toward its next $50.</p>
 
@@ -120,14 +120,14 @@
         <dt>Busts at</dt><dd>BTC falls 2.5%</dd>
         <dt>Profit if it wins</dt><dd>$450</dd>
         <dt>Burn (80%)</dt><dd>$360 of the coin</dd>
-        <dt>HYPERPUMP buyback (20%)</dt><dd>$90</dd>
+        <dt>HYPERPUMP buy and burn (20%)</dt><dd>$90</dd>
       </dl></div>
       <p>Odds ignore trading fees, funding costs and slippage, which all work against the position.</p>
 
       <h2 id="status">What is live</h2>
       <div class="live">
         <div><h3>Built</h3><ul><li>Launching coins on pump.fun</li><li>Locking creator fees to the treasury, checked on-chain</li><li>Fee tracking and the coin list</li><li>Any Hyperliquid market, live prices and leverage</li><li>Coin pages</li></ul></div>
-        <div><h3>Not built yet</h3><ul><li>The Hyperliquid bot that opens and closes positions</li><li>Moving SOL fees to USDC margin on Hyperliquid</li><li>The burn and buyback</li></ul></div>
+        <div><h3>Not built yet</h3><ul><li>The Hyperliquid bot that opens and closes positions</li><li>Moving SOL fees to USDC margin on Hyperliquid</li><li>The buy and burn</li></ul></div>
       </div>
       <p><b>Today, coins launch and stack fees, but no positions are opened.</b></p>
 
