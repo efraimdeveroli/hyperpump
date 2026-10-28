@@ -11,7 +11,7 @@ Zero npm dependencies. Needs Node >= 22.5.
 Local UI test with no external calls and eight sample coins: `MOCK=1 node --no-warnings server.mjs`
 
 ## Front end
-Pages: `/` (launch and Explore), `/coin/<mint>` (one coin: fee progress and position details, from `GET /api/coin/<mint>`). Both load `style.css`. Share tags (Open Graph and X card, image `og.png`) are filled with the site's address when served.
+Pages: `/` (home and Explore), `/launch` (the launch form), `/coin/<mint>` (one coin: fee progress and position details, from `GET /api/coin/<mint>`). Both load `style.css`. Share tags (Open Graph and X card, image `og.png`) are filled with the site's address when served.
 
 `public/index.html` is the single page (the Arcade layout in Terminal's teal and mint colors). It reads the ids and `data-*` hooks listed at the top of `public/app.js`, which holds the wallet, launch, market picker and Explore logic. The other three explored designs were removed.
 
