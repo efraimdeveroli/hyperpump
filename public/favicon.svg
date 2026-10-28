@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 432 432"><defs><clipPath id="hpc"><rect x="156" y="56" width="200" height="400" rx="100"/></clipPath><linearGradient id="hpl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#97FCE4"/><stop offset="1" stop-color="#50D2C1"/></linearGradient></defs><g transform="translate(512 0) scale(-1 1)"><g transform="rotate(-30 256 256)"><rect x="156" y="56" width="200" height="400" rx="100" fill="#0E1F22"/>
+<g clip-path="url(#hpc)"><path d="M120 236 C170 196 210 196 256 236 S342 276 392 236 V480 H120 Z" fill="url(#hpl)"/>
+<path d="M120 236 C170 196 210 196 256 236 S342 276 392 236" fill="none" stroke="#E6FFF8" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+<circle cx="214" cy="330" r="14" fill="#081114" opacity=".35"/><circle cx="288" cy="372" r="9" fill="#081114" opacity=".35"/><circle cx="262" cy="300" r="6" fill="#081114" opacity=".35"/></g>
+<rect x="156" y="56" width="200" height="400" rx="100" fill="none" stroke="#54F58E" stroke-width="16"/></g></g></svg>

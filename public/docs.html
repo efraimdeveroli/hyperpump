@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HYPERPUMP Docs</title>
+<meta name="description" content="How HYPERPUMP works: launching a coin, fees, markets, take-profit tiers, wins and busts, and what is live today.">
+<meta property="og:site_name" content="HYPERPUMP">
+<meta property="og:title" content="HYPERPUMP Docs">
+<meta property="og:description" content="How a coin launches, stacks fees and goes long or short on Hyperliquid.">
+<meta property="og:image" content="__ORIGIN__/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HyperPumpSol">
+<meta name="twitter:image" content="__ORIGIN__/og.png">
+<meta name="theme-color" content="#081114">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+.dg{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;padding:20px 0 40px;align-items:start}
+.toc{position:sticky;top:20px;display:flex;flex-direction:column;gap:2px;font-weight:600;font-size:15px}
+.toc a{color:var(--dim);padding:6px 12px;border-left:2px solid var(--s3)}.toc a:hover{color:var(--pump);border-color:var(--pump)}
+.doc{min-width:0;max-width:720px}
+.doc h1{font:800 clamp(34px,5vw,52px)/1.02 var(--disp);letter-spacing:-.03em;margin-bottom:14px}
+.doc .lead{font-size:19px;color:var(--dim);margin-bottom:30px;max-width:60ch}
+.doc h2{font:800 28px/1.1 var(--disp);letter-spacing:-.02em;margin:44px 0 12px;scroll-margin-top:20px}
+.doc h3{font:700 18px var(--disp);margin:22px 0 6px}
+.doc p,.doc li{margin-bottom:12px;max-width:68ch}
+.doc ul,.doc ol{padding-left:22px;margin-bottom:12px}
+.doc a.in{color:var(--pump);text-decoration:underline;text-underline-offset:3px}
+.doc b{font-weight:700}
+.note{background:var(--s1);border:2px solid var(--s3);border-radius:16px;padding:14px 18px;margin:16px 0}
+.note.warn{background:rgba(242,193,78,.08);border-color:rgba(242,193,78,.35)}
+.tbl{overflow-x:auto;margin:14px 0}
+.tbl table{border-collapse:collapse;width:100%;min-width:480px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--s3)}
+.tbl th{color:var(--dim);font-weight:600;font-size:14px}
+.ex{background:var(--s1);border:2px solid var(--s3);border-radius:18px;padding:18px 22px;margin:16px 0}
+.ex dl{display:grid;grid-template-columns:1fr auto;gap:8px 18px;margin:0}.ex dt{color:var(--dim)}.ex dd{margin:0;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.live{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.live>div{background:var(--s1);border:2px solid var(--s3);border-radius:18px;padding:16px 20px}
+.live h3{margin:0 0 8px}.live ul{margin:0}
+@media (max-width:860px){.dg{grid-template-columns:minmax(0,1fr);gap:8px}.toc{position:static;flex-direction:row;flex-wrap:wrap;gap:6px}.toc a{border:1px solid var(--s3);border-radius:99px;padding:5px 12px}.live{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/">
+      <svg viewBox="40 40 432 432" aria-hidden="true"><defs><clipPath id="hpc"><rect x="156" y="56" width="200" height="400" rx="100"/></clipPath><linearGradient id="hpl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#97FCE4"/><stop offset="1" stop-color="#50D2C1"/></linearGradient></defs><g transform="translate(512 0) scale(-1 1)"><g transform="rotate(-30 256 256)"><rect x="156" y="56" width="200" height="400" rx="100" fill="#0E1F22"/>
+<g clip-path="url(#hpc)"><path d="M120 236 C170 196 210 196 256 236 S342 276 392 236 V480 H120 Z" fill="url(#hpl)"/>
+<path d="M120 236 C170 196 210 196 256 236 S342 276 392 236" fill="none" stroke="#E6FFF8" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+<circle cx="214" cy="330" r="14" fill="#081114" opacity=".35"/><circle cx="288" cy="372" r="9" fill="#081114" opacity=".35"/><circle cx="262" cy="300" r="6" fill="#081114" opacity=".35"/></g>
+<rect x="156" y="56" width="200" height="400" rx="100" fill="none" stroke="#54F58E" stroke-width="16"/></g></g></svg>
+      HYPERPUMP
+    </a>
+    <span class="pw">Perps on Hyperliquid</span>
+    <div class="sp"></div>
+    <div class="links"><a href="/#board">Coins</a><a href="/#make">Launch</a><a href="/#how">How it works</a><a href="/docs">Docs</a><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener" aria-label="HYPERPUMP on X"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.2 2.2h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.2H8l4.7 6.2 5.5-6.2Zm-1.2 17.5h1.8L7.1 4H5.2l11.8 15.7Z"/></svg></a></div>
+    <a class="btn main" href="/#make">Launch a coin</a>
+  </nav>
+  <div class="dg">
+    <aside class="toc" aria-label="On this page">
+      <a href="#what">What it is</a><a href="#flow">How a coin plays</a><a href="#market">Market and side</a><a href="#tiers">Take-profit tiers</a><a href="#fees">Fees and the treasury</a><a href="#outcome">Win or bust</a><a href="#example">Worked example</a><a href="#status">What is live</a><a href="#risks">Risks</a><a href="#faq">FAQ</a>
+    </aside>
+    <article class="doc">
+      <h1>HYPERPUMP Docs</h1>
+      <p class="lead">Launch a coin on pump.fun. Its creator fees become a leveraged long or short on Hyperliquid. This page explains every part.</p>
+
+      <h2 id="what">What it is</h2>
+      <p>HYPERPUMP is a launchpad on Solana. Each coin you launch is a normal pump.fun coin, with one difference: all of its creator fees are locked to the HYPERPUMP treasury. Those fees are the coin's bankroll.</p>
+      <p>When a coin's fees reach <b>$50</b>, HYPERPUMP is meant to use them as margin to open a leveraged position on <a class="in" href="https://hyperliquid.xyz" target="_blank" rel="noopener">Hyperliquid</a>, in the market and on the side the coin's creator picked at launch. A winning position burns the coin and funds a HYPERPUMP buyback. A bust sends the coin back to stacking fees.</p>
+
+      <h2 id="flow">How a coin plays</h2>
+      <ol>
+        <li><b>Launch.</b> Connect a Solana wallet, name the coin, add a picture and choose a market, a side and a take-profit tier. One transaction creates the coin and locks its creator fees to the treasury.</li>
+        <li><b>Fees stack.</b> Every trade of the coin on pump.fun pays creator fees. They collect in the coin's fee vault until they reach $50.</li>
+        <li><b>Position opens.</b> The fees become margin on Hyperliquid. The position uses the market's maximum leverage, so $50 of fees opens a position worth $50 times that leverage.</li>
+        <li><b>Win or bust.</b> If the price moves far enough your way, the position takes profit. If it moves against you far enough, it is liquidated.</li>
+      </ol>
+      <p>The coin page at <code>/coin/&lt;address&gt;</code> shows each coin's progress and position details.</p>
+
+      <h2 id="market">Market and side</h2>
+      <p>You can pair a coin with <b>any perpetual market on Hyperliquid</b>: BTC, ETH, SOL, HYPE, memecoins, and the stocks and other markets that third parties list there. Use the search box in the launch form to find one. Prices, available markets and leverage come live from Hyperliquid.</p>
+      <p><b>Long</b> wins when the price goes up. <b>Short</b> wins when it goes down.</p>
+      <p>The leverage is the market's maximum, recorded when your coin launches. Different markets allow different maximums, from a few times up to 40x on BTC. The market, side and tier are locked for the life of the coin.</p>
+
+      <h2 id="tiers">Take-profit tiers</h2>
+      <p>The tier is how much the position has to grow before it takes profit and closes. It is measured against the margin, the $50 of fees that opened it.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Tier</th><th>Closes at</th><th>Odds of getting there first</th><th>Profit on $50 margin</th></tr></thead>
+        <tbody><tr><td><b>Chill</b></td><td>2x margin</td><td>about 1 in 2</td><td>$50</td></tr>
+        <tr><td><b>Degen</b></td><td>5x margin</td><td>about 1 in 5</td><td>$200</td></tr>
+        <tr><td><b>Hyper-Degen</b></td><td>10x margin</td><td>about 1 in 10</td><td>$450</td></tr></tbody>
+      </table></div>
+      <p>The price move a tier needs depends on the leverage: <b>(tier &minus; 1) &divide; leverage</b>. The position busts when the price moves <b>1 &divide; leverage</b> against it. So a higher tier is a bigger prize with lower odds, and the odds are about 1 in the tier on any market.</p>
+      <p>On a low-leverage market a high tier can need a huge move. HYPERPUMP switches off any tier that would need more than a <b>100%</b> price move, because the position could sit for months. The launch form shows the move each tier needs for the market you chose.</p>
+
+      <h2 id="fees">Fees and the treasury</h2>
+      <p>pump.fun lets a coin's creator share its fees with other addresses. HYPERPUMP's launch transaction sets that up so <b>100% of the coin's creator fees go to the treasury</b> and the admin rights are revoked, so the split cannot be changed afterward.</p>
+      <p>The server checks this on-chain before it lists a coin. A coin whose fees are not locked to the treasury is not listed.</p>
+      <p>Fee progress is read from the coin's fee vault and converted to dollars with the current SOL price. The $50 threshold is the same for every coin.</p>
+      <div class="note"><b>Creator wallets.</b> pump.fun may pool a creator wallet's fees across all its coins, so a wallet that launches several coins could see the same fee number on each. Using a separate wallet per coin avoids that.</div>
+
+      <h2 id="outcome">Win or bust</h2>
+      <h3>Win</h3>
+      <p>The position takes profit at its tier. The profit is split: <b>80% buys back and burns the coin</b>, which removes supply, and <b>20% funds a buyback of HYPERPUMP</b>.</p>
+      <h3>Bust</h3>
+      <p>If the price moves against the position by 1 &divide; leverage, Hyperliquid liquidates it and the margin is lost. The coin is not burned and starts stacking fees again toward its next $50.</p>
+
+      <h2 id="example">Worked example</h2>
+      <p>A coin is launched as a <b>long on BTC</b> at <b>Hyper-Degen</b>. BTC allows 40x leverage.</p>
+      <div class="ex"><dl>
+        <dt>Fees reach</dt><dd>$50</dd>
+        <dt>Position size (40x)</dt><dd>$2,000</dd>
+        <dt>Takes profit at</dt><dd>10x margin = $500, a 22.5% rise in BTC</dd>
+        <dt>Busts at</dt><dd>BTC falls 2.5%</dd>
+        <dt>Profit if it wins</dt><dd>$450</dd>
+        <dt>Burn (80%)</dt><dd>$360 of the coin</dd>
+        <dt>HYPERPUMP buyback (20%)</dt><dd>$90</dd>
+      </dl></div>
+      <p>Odds ignore trading fees, funding costs and slippage, which all work against the position.</p>
+
+      <h2 id="status">What is live</h2>
+      <div class="live">
+        <div><h3>Built</h3><ul><li>Launching coins on pump.fun</li><li>Locking creator fees to the treasury, checked on-chain</li><li>Fee tracking and the coin list</li><li>Any Hyperliquid market, live prices and leverage</li><li>Coin pages</li></ul></div>
+        <div><h3>Not built yet</h3><ul><li>The Hyperliquid bot that opens and closes positions</li><li>Moving SOL fees to USDC margin on Hyperliquid</li><li>The burn and buyback</li></ul></div>
+      </div>
+      <p><b>Today, coins launch and stack fees, but no positions are opened.</b></p>
+
+      <h2 id="risks">Risks</h2>
+      <div class="note warn">
+        <ul>
+          <li>Leveraged trading is risky. Positions can be liquidated quickly and the margin can be lost entirely.</li>
+          <li>Most coins on pump.fun lose value. A burn only helps if the coin has buyers.</li>
+          <li>Leveraged products are restricted in some places, including the U.S. and Ontario. Check the rules where you live.</li>
+          <li>Odds are estimates that ignore fees, funding and slippage.</li>
+          <li>This is early software. Do not put in more than you can lose. Nothing here is financial advice.</li>
+        </ul>
+      </div>
+
+      <h2 id="faq">FAQ</h2>
+      <h3>Can I get my fees back?</h3>
+      <p>No. Once a coin is launched its fees are locked to the treasury and cannot be redirected.</p>
+      <h3>Can I change the market, side or tier later?</h3>
+      <p>No. They are set at launch and apply for the life of the coin.</p>
+      <h3>Which wallets work?</h3>
+      <p>Phantom, Solflare and Backpack.</p>
+      <h3>What does launching cost?</h3>
+      <p>The normal pump.fun launch cost and network fees. You can also make an optional first buy of your coin in the same flow.</p>
+      <h3>Where do I follow updates?</h3>
+      <p><a class="in" href="https://x.com/HyperPumpSol" target="_blank" rel="noopener">@HyperPumpSol</a> on X.</p>
+    </article>
+  </div>
+  <footer><span>HYPERPUMP · launches on pump.fun, trades on Hyperliquid</span><span><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener">@HyperPumpSol</a> · Not financial advice.</span></footer>
+</div>
+</body>
+</html>
