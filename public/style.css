@@ -4,7 +4,7 @@
   color-scheme:dark;
   --bg:#081114; --s1:#0D1A1E; --s2:#122428; --s3:#1D383B; --ink:#E4F5F1; --dim:#82A69E;
   --pump:#97FCE4; --pump-d:#238F80; --mint:#97FCE4; --teal:#50D2C1; --long:#3CE488; --pink:#F0708A; --sun:#F2C14E;
-  --disp:'Bricolage Grotesque',system-ui,sans-serif; --body:'Figtree',system-ui,sans-serif;
+  --disp:'Inter',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
@@ -37,7 +37,7 @@ nav .links a svg{display:block;margin-top:4px}footer a{color:inherit;text-decora
 
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:36px;padding:34px 0 20px;align-items:start}
-h1{font:800 clamp(44px,6.2vw,80px)/.94 var(--disp);letter-spacing:-.035em}
+h1{font:900 clamp(40px,5.6vw,74px)/.95 var(--disp);letter-spacing:-.045em}
 h1 span{display:block;color:var(--pump)}
 .lead{margin-top:20px;font-size:18px;color:#B9D6CF;max-width:46ch}
 .lead b{color:var(--ink)}
