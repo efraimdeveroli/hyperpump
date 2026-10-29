@@ -9,7 +9,7 @@
 <meta property="og:title" content="A coin on HYPERPUMP">
 <meta property="og:image" content="__ORIGIN__/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@HyperPumpSol">
+<meta name="twitter:site" content="@TradeHyperPump">
 <meta name="twitter:image" content="__ORIGIN__/og.png">
 <meta name="theme-color" content="#081114">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -56,11 +56,11 @@
     </a>
     <span class="pw">Perps on Hyperliquid</span>
     <div class="sp"></div>
-    <div class="links"><a href="/#board">Coins</a><a href="/launch">Launch</a><a href="/#how">How it works</a><a href="/docs">Docs</a><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener" aria-label="HYPERPUMP on X"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.2 2.2h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.2H8l4.7 6.2 5.5-6.2Zm-1.2 17.5h1.8L7.1 4H5.2l11.8 15.7Z"/></svg></a></div>
+    <div class="links"><a href="/#board">Coins</a><a href="/launch">Launch</a><a href="/#how">How it works</a><a href="/docs">Docs</a><a href="https://x.com/TradeHyperPump" target="_blank" rel="noopener" aria-label="HYPERPUMP on X"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.2 2.2h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.2H8l4.7 6.2 5.5-6.2Zm-1.2 17.5h1.8L7.1 4H5.2l11.8 15.7Z"/></svg></a></div>
     <a class="btn main" href="/launch">Launch a coin</a>
   </nav>
   <main id="app" aria-live="polite"><p class="empty">Loading coin…</p></main>
-  <footer><span>HYPERPUMP · launches on pump.fun, trades on Hyperliquid</span><span><a href="https://x.com/HyperPumpSol" target="_blank" rel="noopener">@HyperPumpSol</a> · Not financial advice.</span></footer>
+  <footer><span>HYPERPUMP · launches on pump.fun, trades on Hyperliquid</span><span><a href="https://x.com/TradeHyperPump" target="_blank" rel="noopener">@TradeHyperPump</a> · Not financial advice.</span></footer>
 </div>
 <script>
 (function () {
@@ -85,11 +85,10 @@
     app.innerHTML = '<a class="back" href="/#board">← All coins</a>' +
       '<div class="ch">' + av + '<div><h1>$' + esc(c.symbol) + '</h1><div class="nm">' + esc(c.name) + ' · launched ' + ago(c.createdAt) + ' ago</div>' +
       '<div class="tags"><span class="tg ' + (short_ ? 's' : 'l') + '">' + (short_ ? 'SHORT ↓' : 'LONG ↑') + '</span><span class="tg m">' + esc(label) + ' ' + lev + 'x</span><span class="tg">' + esc(TIER[c.tier] || '') + ' ' + c.tier + 'x</span></div></div></div>' +
-      '<div class="st"><span aria-hidden="true" style="width:10px;height:10px;border-radius:50%;background:var(--sun);flex:none;margin-top:7px"></span><span><b>Position not live yet.</b> Fees stack now. The Hyperliquid bot that opens the position is still being built.</span></div>' +
       '<div class="grid2"><section class="pn"><h2>Fee progress</h2>' +
       '<div class="big">' + (fee == null ? '…' : usd(fee)) + ' <small>of $' + thr + '</small></div>' +
       '<div class="cbar' + (c.ready ? ' rdy' : '') + '"><i style="width:' + (c.ready ? 100 : pct) + '%"></i></div>' +
-      '<div class="d">' + (c.ready ? 'Ready. Waiting for the Hyperliquid bot.' : pct + '% of the way to opening') + '</div>' +
+      '<div class="d">' + (c.ready ? 'Ready to open' : pct + '% of the way to opening') + '</div>' +
       '<div class="links"><a class="btn" href="https://pump.fun/coin/' + esc(c.mint) + '" target="_blank" rel="noopener">Trade on pump.fun</a><a class="btn" href="https://solscan.io/token/' + esc(c.mint) + '" target="_blank" rel="noopener">Solscan</a></div></section>' +
       '<section class="pn"><h2>The position</h2><dl class="kv">' +
       '<dt>Market</dt><dd>' + esc(label) + (c.market.indexOf(':') > 0 ? ' (' + esc(c.market.split(':')[0]) + ')' : '') + '</dd>' +
