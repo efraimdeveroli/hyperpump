@@ -304,7 +304,7 @@ const server = http.createServer(async (req, res) => {
     if (process.env.PAUSED === '1') {
       if (url.pathname.startsWith('/api/')) return send(res, 503, { error: 'paused' });
       res.writeHead(503, { 'content-type': 'text/html; charset=utf-8', 'retry-after': '3600', 'cache-control': 'no-store' });
-      return res.end('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HYPERPUMP</title><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#081114;color:#E4F5F1;font:600 20px system-ui,sans-serif;text-align:center;padding:24px"><div><div style="font-weight:900;font-size:34px;letter-spacing:-.02em">HYPER<span style="color:#97FCE4">PUMP</span></div><p style="margin-top:14px;color:#82A69E">Paused for now. Back soon.</p></div>');
+      return res.end('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HYPERPUMP · Coming soon</title><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#081114;color:#E4F5F1;font:600 20px system-ui,sans-serif;text-align:center;padding:24px"><div><div style="font-weight:900;font-size:34px;letter-spacing:-.02em">HYPER<span style="color:#97FCE4">PUMP</span></div><p style="margin-top:14px;color:#82A69E">Coming soon.</p><p style="margin-top:18px;font-size:16px"><a href="https://x.com/TradeHyperPump" style="color:#97FCE4;text-decoration:none">@TradeHyperPump</a></p></div>');
     }
     const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').toString().split(',').pop().trim();
     if (url.pathname.startsWith('/api/')) {
