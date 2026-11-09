@@ -42,6 +42,17 @@ db.exec(`create table if not exists coins(
   signature text not null, created_at integer not null)`);
 // Leverage is stored at launch so a later change on Hyperliquid cannot rewrite a coin's bet.
 try { db.exec('alter table coins add column lev integer'); } catch { /* column already exists */ }
+// One-time wipe of the coin list: set CLEAR_COINS to any new value to run it once (a backup copy of the database is kept first).
+db.exec('create table if not exists meta(k text primary key, v text)');
+if (process.env.CLEAR_COINS) {
+  const done = db.prepare("select v from meta where k = 'cleared'").get();
+  if (!done || done.v !== process.env.CLEAR_COINS) {
+    try { fs.copyFileSync(path.join(DATA_DIR, 'hyperpump.db'), path.join(DATA_DIR, 'hyperpump.backup-' + Date.now() + '.db')); } catch (e) { console.log('backup failed', e.message); }
+    const n = db.prepare('delete from coins').run().changes;
+    db.prepare("insert or replace into meta(k,v) values('cleared', ?)").run(process.env.CLEAR_COINS);
+    console.log('cleared coins:', n);
+  }
+}
 
 // MOCK=1 only: fill an empty local database with demo coins so the designs have something to show.
 if (process.env.MOCK === '1' && !db.prepare('select 1 from coins limit 1').get()) {
