@@ -52,6 +52,14 @@ function api(path, body) {
 HP.u = { label: function (s) { return mlabel(s); }, esc: esc, ago: ago, short: short, fmtUsd: fmtUsd, TIER: TIER, lev: function (s) { return LEV[s]; }, price: function (s) { return PRICE[s]; } };
 
 /* ---------- wallets (injected providers, no library) ---------- */
+/* Wallet icons: installed wallets announce themselves (name + icon) through the Wallet Standard, so each shows its own logo, supplied by the wallet. */
+var WICON = {};
+(function () {
+  function reg(w) { try { if (w && w.name && typeof w.icon === 'string' && /^data:image\/(svg\+xml|png|webp|jpeg|gif)/.test(w.icon)) WICON[String(w.name).toLowerCase()] = w.icon; } catch (x) {} }
+  var wsApi = { register: function () { [].slice.call(arguments).forEach(reg); return function () {}; } };
+  try { window.addEventListener('wallet-standard:register-wallet', function (e) { try { e.detail(wsApi); } catch (x) {} }); } catch (x) {}
+  try { window.dispatchEvent(new CustomEvent('wallet-standard:app-ready', { detail: wsApi })); } catch (x) {}
+})();
 function walletList() {
   var w = window, list = [];
   var ph = w.phantom && w.phantom.solana && w.phantom.solana.isPhantom ? w.phantom.solana : null;
@@ -65,8 +73,9 @@ function walletList() {
 function renderList() {
   dt.textContent = 'Connect wallet';
   dbx.innerHTML = '<p>Choose a Solana wallet.</p>' + walletList().map(function (x, i) {
-    return x.p ? '<button class="wopt" data-i="' + i + '"><i>' + x.name[0] + '</i><span>' + x.name + '</span><em>detected</em></button>'
-      : '<button class="wopt" disabled><i>' + x.name[0] + '</i><span>' + x.name + '</span><em>not installed</em></button>';
+    var ic = WICON[x.name.toLowerCase()], mark = ic ? '<i class="wi"><img alt="" src="' + esc(ic) + '"></i>' : '<i>' + x.name[0] + '</i>';
+    return x.p ? '<button class="wopt" data-i="' + i + '">' + mark + '<span>' + x.name + '</span><em>detected</em></button>'
+      : '<button class="wopt" disabled>' + mark + '<span>' + x.name + '</span><em>not installed</em></button>';
   }).join('');
   var f = dbx.querySelector('.wopt:not([disabled])'); if (f) f.focus();
 }
